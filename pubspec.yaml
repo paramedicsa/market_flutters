@@ -1,0 +1,46 @@
+name: market_flutter
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  supabase_flutter: ^2.5.0
+  http: ^1.2.0
+  shared_preferences: ^2.5.4
+  image_picker: ^1.0.7
+  google_generative_ai: ^0.4.5
+  uuid: ^4.5.2
+  flutter_image_compress: ^2.1.0
+  url_launcher: ^6.2.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/fonts/
+    - assets/images/yearly_analytic_2025.png
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-VariableFont_wdth,wght.ttf
+    - family: CherryCreamSoda
+      fonts:
+        - asset: assets/fonts/CherryCreamSoda-Regular.ttf
+    - family: IndieFlower
+      fonts:
+        - asset: assets/fonts/IndieFlower-Regular.ttf
+    - family: JustAnotherHand
+      fonts:
+        - asset: assets/fonts/JustAnotherHand-Regular.ttf
+    - family: PTSansNarrow
+      fonts:
+        - asset: assets/fonts/PTSansNarrow-Regular.ttf

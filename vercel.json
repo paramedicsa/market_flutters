@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "lib/screens/artist_payments.dart",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/payfast-itn",
+      "dest": "/lib/screens/artist_payments.dart"
+    }
+  ]
+}
+
