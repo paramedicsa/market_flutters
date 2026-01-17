@@ -47,7 +47,7 @@ validate_sql_file() {
     fi
     
     # Check for incomplete statements
-    if grep -q "CREATE TABLE.*(" "$file" | head -1; then
+    if grep -q "CREATE TABLE.*(" "$file"; then
         if ! grep -q ");" "$file"; then
             echo -e "${RED}❌ ERROR: Potentially unclosed CREATE TABLE statement${NC}"
             all_valid=false

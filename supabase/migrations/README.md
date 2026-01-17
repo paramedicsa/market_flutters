@@ -91,6 +91,10 @@ All tables have RLS enabled with the following policies:
 psql -U postgres -d your_test_db -f 00001_create_profiles.sql
 psql -U postgres -d your_test_db -f 00002_create_artist_subscription_packages.sql
 psql -U postgres -d your_test_db -f 00003_create_artist_subscriptions.sql
+
+# Or use the validation script (make it executable first):
+chmod +x validate_migrations.sh
+./validate_migrations.sh
 ```
 
 ## Next Steps

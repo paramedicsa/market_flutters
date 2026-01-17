@@ -389,15 +389,15 @@ FROM artist_subscription_packages
 ORDER BY sort_order;
 
 -- Success message
-SELECT '✅ Migration complete! All tables created successfully.' AS status
+SELECT '[SUCCESS] Migration complete! All tables created successfully.' AS status
 UNION ALL
-SELECT '✅ profiles table: Ready for user data' AS status
+SELECT '[SUCCESS] profiles table: Ready for user data' AS status
 UNION ALL
-SELECT '✅ artist_subscription_packages: 5 packages configured' AS status
+SELECT '[SUCCESS] artist_subscription_packages: 5 packages configured' AS status
 UNION ALL
-SELECT '✅ artist_subscriptions: Ready to track subscriptions' AS status
+SELECT '[SUCCESS] artist_subscriptions: Ready to track subscriptions' AS status
 UNION ALL
-SELECT '📝 Next: Create PayPal plans for Tester, Hobbyist, and Creator' AS status;
+SELECT '[TODO] Next: Create PayPal plans for Tester, Hobbyist, and Creator' AS status;
 
 -- =====================================================
 -- MIGRATION COMPLETE
