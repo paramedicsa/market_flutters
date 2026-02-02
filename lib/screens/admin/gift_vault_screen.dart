@@ -70,7 +70,7 @@ class _GiftVaultScreenState extends State<GiftVaultScreen> {
                     ], // <-- This closing bracket was missing in the original code
                     onChanged: (value) {
                       setState(() {
-                        product['funnel_tier'] = value;
+                        products[index] = {...product, 'funnel_tier': value};
                       });
                     },
                   ),
