@@ -1,6 +1,9 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../models/artist_application.dart';
 import '../models/artist_notification.dart';
+import '../models/product.dart';
+import '../models/user_wallet.dart';
+import '../models/gift_vault_order.dart';
 
 class SupabaseService {
   final _client = Supabase.instance.client;
@@ -39,6 +42,61 @@ class SupabaseService {
       .select()
       .eq('artist_application_id', artistApplicationId);
     return (data as List).map((e) => ArtistNotification.fromJson(e)).toList();
+  }
+
+  // Gift Vault Methods
+  Future<List<Product>> fetchProductsByFunnelTier(String funnelTier) async {
+    final data = await _client
+        .from('products')
+        .select()
+        .eq('funnel_tier', funnelTier)
+        .eq('is_available', true);
+    return (data as List).map((e) => Product.fromJson(e)).toList();
+  }
+
+  Future<UserWallet?> fetchUserWallet(String userId) async {
+    final data = await _client
+        .from('user_wallet')
+        .select()
+        .eq('user_id', userId)
+        .maybeSingle();
+    
+    if (data == null) return null;
+    return UserWallet.fromJson(data);
+  }
+
+  Future<void> updateUserWallet(UserWallet wallet) async {
+    await _client.from('user_wallet').upsert(wallet.toJson());
+  }
+
+  Future<void> saveGiftVaultOrder(GiftVaultOrder order) async {
+    await _client.from('gift_vault_orders').insert(order.toJson());
+  }
+
+  Future<List<GiftVaultOrder>> fetchGiftVaultOrders({String? groupId}) async {
+    final query = _client.from('gift_vault_orders').select();
+    if (groupId != null) {
+      query.eq('group_id', groupId);
+    }
+    final data = await query.order('created_at', ascending: false);
+    return (data as List).map((e) => GiftVaultOrder.fromJson(e)).toList();
+  }
+
+  Future<Map<String, List<GiftVaultOrder>>> fetchGroupedOrders() async {
+    final data = await _client
+        .from('gift_vault_orders')
+        .select()
+        .order('created_at', ascending: false);
+    
+    final orders = (data as List).map((e) => GiftVaultOrder.fromJson(e)).toList();
+    
+    // Group by group_id (email)
+    final Map<String, List<GiftVaultOrder>> grouped = {};
+    for (final order in orders) {
+      grouped.putIfAbsent(order.groupId, () => []).add(order);
+    }
+    
+    return grouped;
   }
 }
 

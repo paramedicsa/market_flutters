@@ -9,6 +9,8 @@ class AppTheme {
   static const Color black = Color(0xFF000000);
   static const Color cardDark = Color(0xFF1A1A1A);
   static const Color cardBorder = Color(0xFF2A2A2A);
+  static const Color green = Color(0xFF00FF88); // Added for Gift Vault
+  static const Color zinc900 = Color(0xFF18181B); // Zinc-900 for backgrounds
 
   static ThemeData get darkTheme {
     return ThemeData(
@@ -110,5 +112,35 @@ class AppTheme {
         offset: const Offset(0, 2),
       ),
     ];
+  }
+
+  // Gradient for Gift Vault (Pink/Purple/Blue)
+  static LinearGradient vaultGradient() {
+    return const LinearGradient(
+      colors: [pink, purple, cyan],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    );
+  }
+
+  // Golden Gradient for Vault Doors
+  static LinearGradient goldenGradient() {
+    return const LinearGradient(
+      colors: [
+        Color(0xFFFFD700), // Gold
+        Color(0xFFFFA500), // Orange Gold
+        Color(0xFFFFD700), // Gold
+      ],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    );
+  }
+
+  // Nested gradient border painter
+  static BoxDecoration nestedGradientBorder({double borderWidth = 3.0}) {
+    return BoxDecoration(
+      gradient: vaultGradient(),
+      borderRadius: BorderRadius.circular(12),
+    );
   }
 }
