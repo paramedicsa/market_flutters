@@ -178,7 +178,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
           ),
         ),
         subtitle: Text(
-          'Total Spent: ${orders.isNotEmpty ? _formatCurrency(totalSpent, orders.first.currency) : ""}',
+          orders.isEmpty 
+              ? 'No orders' 
+              : 'Total Spent: ${_formatCurrency(totalSpent, orders.first.currency)}',
           style: const TextStyle(color: Colors.white70),
         ),
         children: [

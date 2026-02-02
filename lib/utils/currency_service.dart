@@ -25,24 +25,33 @@ class CurrencyService {
     'USD': 20.0, // $20 bonus
   };
 
+  // Default currency for fallback
+  static const String defaultCurrency = 'ZAR';
+
   static double getStarterTarget(String currency) {
-    return spendTargets[currency]?['starter'] ?? spendTargets['ZAR']!['starter']!;
+    return spendTargets[currency]?['starter'] ?? 
+           spendTargets[defaultCurrency]?['starter'] ?? 
+           100.0;
   }
 
   static double getFreeGiftTarget(String currency) {
-    return spendTargets[currency]?['free_gift'] ?? spendTargets['ZAR']!['free_gift']!;
+    return spendTargets[currency]?['free_gift'] ?? 
+           spendTargets[defaultCurrency]?['free_gift'] ?? 
+           800.0;
   }
 
   static double getFreeShippingTarget(String currency) {
-    return spendTargets[currency]?['free_shipping'] ?? spendTargets['ZAR']!['free_shipping']!;
+    return spendTargets[currency]?['free_shipping'] ?? 
+           spendTargets[defaultCurrency]?['free_shipping'] ?? 
+           1000.0;
   }
 
   static double getShareReward(String currency) {
-    return shareRewards[currency] ?? shareRewards['ZAR']!;
+    return shareRewards[currency] ?? shareRewards[defaultCurrency] ?? 20.0;
   }
 
   static double getReferralBonus(String currency) {
-    return referralBonus[currency] ?? referralBonus['ZAR']!;
+    return referralBonus[currency] ?? referralBonus[defaultCurrency] ?? 100.0;
   }
 
   static String formatCurrency(double amount, String currency) {

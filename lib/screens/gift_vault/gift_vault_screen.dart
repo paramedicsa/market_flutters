@@ -31,11 +31,17 @@ class GiftVaultScreen extends StatefulWidget {
 class _GiftVaultScreenState extends State<GiftVaultScreen> {
   final SupabaseService _supabaseService = SupabaseService();
   
+  // Timer constants
+  static const int selectionTimerSeconds = 20 * 60; // 20 minutes
+  
+  // UI constants
+  static const Offset trayPositionOffset = Offset(100, 50); // Top tray position
+  
   // Timer states
   Timer? _selectionTimer;
   Timer? _paymentTimer;
   Timer? _questTimer;
-  int _selectionSecondsRemaining = 20 * 60; // 20 minutes
+  int _selectionSecondsRemaining = selectionTimerSeconds;
   int _paymentSecondsRemaining = 0;
   int _questSecondsRemaining = 0;
 
@@ -173,12 +179,15 @@ class _GiftVaultScreenState extends State<GiftVaultScreen> {
     final position = box.localToGlobal(Offset.zero);
     final size = box.size;
     
-    // Calculate start and end positions for fly animation
+    // Calculate start position
     final startPos = Offset(
       position.dx + size.width / 2,
       position.dy + size.height / 2,
     );
-    final endPos = const Offset(100, 50); // Top tray position
+    
+    // Calculate end position (tray at top)
+    final screenWidth = MediaQuery.of(context).size.width;
+    final endPos = Offset(screenWidth * 0.1, 50); // 10% from left, 50px from top
 
     // Show magic dust animation
     MagicDustOverlay.showFlyAnimation(

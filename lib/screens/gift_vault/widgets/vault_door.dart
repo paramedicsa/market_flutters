@@ -21,6 +21,7 @@ class _VaultDoorState extends State<VaultDoor>
   late AnimationController _controller;
   late Animation<double> _animation;
   bool _shouldShake = false;
+  final math.Random _random = math.Random(); // Reusable Random instance
 
   @override
   void initState() {
@@ -133,7 +134,7 @@ class _VaultDoorState extends State<VaultDoor>
       duration: const Duration(milliseconds: 100),
       transform: shake
           ? (Matrix4.identity()
-            ..translate(math.Random().nextDouble() * 10 - 5, 0.0))
+            ..translate(_random.nextDouble() * 10 - 5, 0.0))
           : Matrix4.identity(),
       width: size.width * 0.5,
       height: size.height,

@@ -55,6 +55,9 @@ class _BonusGamePopupState extends State<BonusGamePopup>
     setState(() => _isSharing = true);
 
     try {
+      // Note: ShareResultStatus.success only indicates the share sheet was presented,
+      // not that content was actually shared. This is a limitation of the share_plus
+      // package. For production, consider server-side validation via deep link tracking.
       final result = await ViralShareService.shareWithResult(
         userName: widget.userName,
         referrerId: widget.userId,

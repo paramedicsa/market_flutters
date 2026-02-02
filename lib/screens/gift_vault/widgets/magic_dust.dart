@@ -22,6 +22,8 @@ class MagicDust extends StatefulWidget {
 
 class _MagicDustState extends State<MagicDust>
     with SingleTickerProviderStateMixin {
+  static const int particleCount = 20; // Number of particles in trail
+  
   late AnimationController _controller;
   late Animation<Offset> _positionAnimation;
   final List<Particle> _particles = [];
@@ -44,7 +46,7 @@ class _MagicDustState extends State<MagicDust>
     ));
 
     // Generate particles
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < particleCount; i++) {
       _particles.add(Particle(
         offset: Offset(
           _random.nextDouble() * 40 - 20,
