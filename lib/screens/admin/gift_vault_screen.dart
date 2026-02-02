@@ -19,7 +19,7 @@ class _GiftVaultScreenState extends State<GiftVaultScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundDark,
+      backgroundColor: AppTheme.black,
       appBar: AppBar(
         title: const Text('Gift Vault Management'),
         backgroundColor: AppTheme.cardDark,
