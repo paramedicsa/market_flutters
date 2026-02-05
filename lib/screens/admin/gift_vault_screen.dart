@@ -188,31 +188,33 @@ class PagePreviewsTab extends StatelessWidget {
         'title': 'Evening Gift Tier 1 (Select 2)',
         'description': 'Preview the Evening Free Gift Tier 1 screen with select 2 functionality',
         'icon': Icons.night_shelter,
-        'screen': Scaffold(
-          backgroundColor: Colors.black,
-          appBar: AppBar(
-            title: const Text("Preview Mode"),
+        'screen': Builder(
+          builder: (previewContext) => Scaffold(
             backgroundColor: Colors.black,
-          ),
-          body: EveningFreeGiftTier1Screen(
-            matrixType: 'evening',
-            onConfirmSelection: (products) {
-              showDialog(
-                context: context,
-                builder: (c) => AlertDialog(
-                  title: const Text("Success!"),
-                  content: Text(
-                    "You selected ${products.length} items:\n\n${products.map((p) => p.name).join('\n')}",
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(c),
-                      child: const Text("OK"),
+            appBar: AppBar(
+              title: const Text("Preview Mode"),
+              backgroundColor: Colors.black,
+            ),
+            body: EveningFreeGiftTier1Screen(
+              matrixType: 'evening',
+              onConfirmSelection: (products) {
+                showDialog(
+                  context: previewContext,
+                  builder: (dialogContext) => AlertDialog(
+                    title: const Text("Success!"),
+                    content: Text(
+                      "You selected ${products.length} items:\n\n${products.map((p) => p.name).join('\n')}",
                     ),
-                  ],
-                ),
-              );
-            },
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(dialogContext),
+                        child: const Text("OK"),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
           ),
         ),
       },
