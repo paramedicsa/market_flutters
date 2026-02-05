@@ -28,7 +28,7 @@ class _GiftVaultScreenState extends State<GiftVaultScreen> with SingleTickerProv
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: AppTheme.black,
       body: Column(
         children: [
           // Header
